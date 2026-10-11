@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ponte Rolante — Estudo e Simulador de Bobinas</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><nav><span class="brand">Ponte Rolante · Bobinas</span><a href="#estudo">Estudo</a><a href="#simulador">Simulador</a><a href="#quiz">Quiz</a></nav></header>
+<div class="hero"><div class="in">
+<h1>Opere a ponte rolante. Armazene bobinas do jeito certo.</h1>
+<p>Estude o padrão técnico de armazenamento, manuseio e preservação de bobinas de aço e pratique no simulador de operação.</p>
+<a class="btn" href="#simulador">Abrir simulador</a><a class="btn alt" href="#estudo">Ir para os estudos</a>
+</div></div>
+<main>
+<div class="cards">
+<div><h3>Estudo completo</h3><p>Todas as seções do padrão PT-LOG-VEGA-DT-0002, com busca.</p></div>
+<div><h3>Simulador</h3><p>3D com garra, visão 360°, cabine, balanço da carga e empilhamento por peso.</p></div>
+<div><h3>Quiz</h3><p>Perguntas sobre o padrão para fixar o conteúdo.</p></div>
+</div>
+
+<section id="estudo">
+<h2>Estudo do padrão técnico</h2>
+<p class="sub">Armazenamento, manuseio e preservação de bobinas em armazéns externos à ArcelorMittal Vega. Toque em cada título para abrir.</p>
+<p class="meta" id="docmeta">Documento PT-LOG-VEGA-DT-0002 · Revisão 008.0 · Criação 17/12/2010 · Revisão 24/06/2024 · 6 páginas</p>
+<br><input id="q" type="search" placeholder="Buscar no conteúdo (ex.: berço, 80 cm, TFA, nível)" aria-label="Buscar">
+<div id="acc"></div>
+</section>
+
+<section id="simulador">
+<h2>Simulador 3D de ponte rolante</h2>
+<p class="sub">Opere a ponte, o carro e a garra em 3D. Organize as 10 bobinas da zona de recebimento nos 8 berços e empilhe nos níveis 1 e 2, sempre sobre duas bobinas. Bobinas mais pesadas ficam embaixo e as marcadas com PE (peça exposta) devem ficar no topo.</p>
+<div class="sim"><div id="wrap">
+<canvas id="gl"></canvas>
+<div class="hud"><div>Pontos <b id="sc">100</b></div><div>Tempo <b id="tm">0</b>s</div><div>Organizadas <b id="dn">0</b>/10</div><div>Nível máx. <b id="lv">2</b></div><div>Balanço <b id="sw">estável</b></div><div>Visão <b id="vw">Externa 360°</b></div></div>
+<div id="msg" role="status"></div>
+<div class="top">
+<button id="cm">Câmera</button><button id="fn">Vel: Normal</button><button id="cmode">Controle: Botões</button><button id="fs">Tela cheia</button>
+<div class="vw"><button data-k="CL" aria-label="Girar visão à esquerda">⟲</button><button data-k="CR" aria-label="Girar visão à direita">⟳</button><button data-k="ZI" aria-label="Aproximar">＋</button><button data-k="ZO" aria-label="Afastar">－</button></div>
+</div>
+<div class="ctl">
+<div class="dpad" data-l="Ponte ◀ ▶ · Carro ▲ ▼"><button data-k="F" style="grid-area:u" aria-label="Carro para frente">▲</button><button data-k="L" style="grid-area:l" aria-label="Ponte para a esquerda">◀</button><button data-k="B" style="grid-area:d" aria-label="Carro para trás">▼</button><button data-k="R" style="grid-area:r" aria-label="Ponte para a direita">▶</button></div>
+<div class="joy" id="j1" data-l="Ponte e carro"><i></i></div>
+<button id="hk" class="g">GARRA</button>
+<div class="hoist" data-l="Gancho"><button data-k="U">▲ Subir</button><button data-k="D">▼ Descer</button></div>
+<div class="joy" id="j2" data-l="Gancho e giro"><i></i></div>
+</div>
+<div id="ov"><div class="box">
+<h3>Inspeção antes da operação</h3>
+<p>Marque cada item para iniciar o turno.</p>
+<label><input type="checkbox" class="ck"> Estou habilitado e capacitado para este equipamento</label>
+<label><input type="checkbox" class="ck"> Inspecionei o equipamento e os acessórios antes de operar</label>
+<label><input type="checkbox" class="ck"> Piso nivelado e limpo, sem contaminantes</label>
+<label><input type="checkbox" class="ck"> Berços sem pontas ou saliências</label>
+<label for="acs">Acessório de içamento</label>
+<select id="acs"><option value="">Selecione…</option><option value="1">Tenaz eletromecânica</option><option value="1">Gancho tipo C e aríete com revestimento de borracha</option><option value="1">Cintas de nylon ou poliéster</option><option value="0">Cabo de aço sem revestimento</option><option value="0">Corrente sem revestimento</option></select>
+<label for="loc">Local de armazenagem</label>
+<select id="loc"><option value="g">Pátio ou galpão (até nível 2)</option><option value="p">Área portuária (até nível 1)</option></select>
+<p id="ovm" style="color:#ffd36b;min-height:24px"></p>
+<button class="btn" id="go">Iniciar operação</button>
+</div></div>
+</div>
+<p class="meta"><b>Teclado:</b> A/D ou ◀ ▶ movem a ponte; W/S ou ▲ ▼ movem o carro; R/E sobe e F/Q desce a garra; Espaço pega ou solta; C troca a visão; J/L giram a visão; + e − dão zoom; Shift = modo fino; Esc sai da tela cheia. <b>Toque:</b> use as teclas na tela (segure para mover) ou troque para Joystick no botão Controle. Use <b>Vel</b> para escolher Fino, Normal ou Rápido. Para pegar, encaixe a garra no furo da bobina com a carga estável.</p>
+</div>
+</section>
+
+<section id="quiz">
+<h2>Quiz</h2>
+<p class="sub">Teste o que você estudou.</p>
+<p class="meta" id="qinfo"></p>
+<label>Perguntas por rodada <select id="qn"><option value="10">10</option><option value="15">15</option><option value="20">20</option></select></label>
+<div id="cq"></div>
+</section>
+</main>
+<footer>Material de estudo baseado no padrão técnico PT-LOG-VEGA-DT-0002, rev. 008.0 (cópia não controlada). Uso educacional; para a operação real, consulte a versão vigente.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
